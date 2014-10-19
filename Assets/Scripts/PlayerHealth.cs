@@ -18,6 +18,12 @@ public class PlayerHealth : MonoBehaviour{
         Events.OnPlayerHealthChanged(_curHealth);
     }
 
+    public void Heal(int x){
+        _curHealth += x;
+        if (_curHealth > MaxHealth)
+            _curHealth = MaxHealth;
+    }
+
     public void Damage(int x){
         _curHealth -= x;
 
@@ -38,6 +44,7 @@ public class PlayerHealth : MonoBehaviour{
         
         GameObject.FindWithTag("HealthUpdater").GetComponent<HealthUpdater>().Unregister();
         GameObject.FindWithTag("WaveUpdater").GetComponent<WaveUpdater>().Unregister();
+        GameObject.FindWithTag("ScoreUpdater").GetComponent<ScoreUpdater>().Unregister();
 
         yield return new WaitForSeconds(0.2f);
 

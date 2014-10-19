@@ -19,6 +19,7 @@ public class Projectile : MonoBehaviour{
         if (other.CompareTag("Enemy")){
             other.gameObject.SendMessage("Damage", Power, SendMessageOptions.DontRequireReceiver);
         }
-        Destroy(this.gameObject);
+        if(!other.CompareTag("Player"))
+            Destroy(this.gameObject);
     }
 }

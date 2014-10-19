@@ -10,6 +10,10 @@ public class ScoreUpdater : MonoBehaviour{
         Events.ScoreChanged += OnScoreChanged;
     }
 
+    public void Unregister(){
+        Events.ScoreChanged -= OnScoreChanged;
+    }
+
     private void OnScoreChanged(int i){
         this.GetComponent<Text>().text = "" + i;
     }
