@@ -11,6 +11,10 @@ public class WaveUpdater : MonoBehaviour{
         Events.WaveChanged += OnWaveChanged;
     }
 
+    public void Unregister(){
+        Events.WaveChanged -= OnWaveChanged;
+    }
+
     private void OnWaveChanged(int i){
         this.GetComponent<Text>().text = "" + i;
     }

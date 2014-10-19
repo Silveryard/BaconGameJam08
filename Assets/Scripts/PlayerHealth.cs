@@ -26,6 +26,8 @@ public class PlayerHealth : MonoBehaviour{
         }
 
         Events.OnPlayerHealthChanged(_curHealth);
+        AudioSource source = GameObject.FindWithTag("PlayerHurt").GetComponent<AudioSource>();
+        source.Play();
 
         if (_curHealth <= 0){
             StartCoroutine("GameOver");
@@ -34,6 +36,8 @@ public class PlayerHealth : MonoBehaviour{
 
     private IEnumerator GameOver(){
         
+        GameObject.FindWithTag("HealthUpdater").GetComponent<HealthUpdater>().Unregister();
+        GameObject.FindWithTag("WaveUpdater").GetComponent<WaveUpdater>().Unregister();
 
         yield return new WaitForSeconds(0.2f);
 
@@ -51,6 +55,7 @@ public class PlayerHealth : MonoBehaviour{
         GameObject.FindWithTag("Wavemanager").SetActive(false);
         
         GameObject.FindWithTag("MainCamera").GetComponent<Animator>().SetTrigger("Trigger");
+        GameObject.FindWithTag("BackgroundMusic").GetComponent<Animator>().SetTrigger("Trigger");
 
         yield return new WaitForSeconds(4.8f);
 

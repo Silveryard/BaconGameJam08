@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour{
     public float Health;
     public float Power;
     public int ScoreValue;
+    public AudioClip DieClip;
+    public GameObject AudioPlayer;
 
     public GameObject ParticelManager;
 
@@ -28,11 +30,14 @@ public class Enemy : MonoBehaviour{
     }
 
     public void Die(){
-        Destroy(this.gameObject);
+        GameObject player = (GameObject) Instantiate(AudioPlayer, transform.position, transform.rotation);
+        player.GetComponent<AudioSource>().clip = DieClip;
+        player.GetComponent<AudioSource>().Play();
         Instantiate(ParticelManager, transform.position, transform.rotation);
         GameObject go = GameObject.FindWithTag("Wavemanager");
         WaveManager wm = go.GetComponent<WaveManager>();
         wm.Died(this.gameObject);
+        Destroy(this.gameObject);
     }
 
     protected void OnTriggerEnter(Collider other){

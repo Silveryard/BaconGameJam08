@@ -10,6 +10,9 @@ public class HealthUpdater : MonoBehaviour{
         Events.PlayerHealthChanged += OnPlayerHealthChanged;
     }
 
+    public void Unregister(){
+        Events.PlayerHealthChanged -= OnPlayerHealthChanged;
+    }
 
     private void OnPlayerHealthChanged(int i){
         this.GetComponent<Text>().text = "" + i;
