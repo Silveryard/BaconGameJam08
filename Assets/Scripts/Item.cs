@@ -9,7 +9,7 @@ public class Item : MonoBehaviour{
     protected void OnTriggerEnter(Collider other){
         if (other.CompareTag("Player")){
             OnCollect();
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 

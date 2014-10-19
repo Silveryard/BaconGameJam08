@@ -22,6 +22,8 @@ public class PlayerHealth : MonoBehaviour{
         _curHealth += x;
         if (_curHealth > MaxHealth)
             _curHealth = MaxHealth;
+
+        Events.OnPlayerHealthChanged(_curHealth);
     }
 
     public void Damage(int x){

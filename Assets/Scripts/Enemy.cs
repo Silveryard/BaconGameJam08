@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour{
 
         if (Health <= 0){
             Score.AddScore(ScoreValue);
+            ItemManager im = GameObject.FindWithTag("ItemManager").GetComponent<ItemManager>();
+            im.SpawnItem(this.gameObject);
             Die();
         }
     }

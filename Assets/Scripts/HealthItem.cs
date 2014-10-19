@@ -13,7 +13,5 @@ public class HealthItem : Item{
         Instantiate(ParticelSystem, player.transform.position, player.transform.rotation);
 
         player.transform.parent.GetComponent<PlayerHealth>().Heal(Power);
-
-        Destroy(gameObject);
     }
 }
